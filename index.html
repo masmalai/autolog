@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AutoLog</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AutoLog">
+<meta name="theme-color" content="#6c5ce7">
+<style>html,body{margin:0;height:100%;background:#6c5ce7}iframe{border:0;width:100%;height:100%;display:block;background:#fff}
+#e{display:none;color:#fff;font:16px system-ui;padding:30px;text-align:center}</style></head>
+<body>
+<iframe id="f" allow="clipboard-write"></iframe>
+<div id="e">ยังไม่ได้ตั้งค่าลิงก์ใน config.js</div>
+<script src="config.js"></script>
+<script>
+// ?page=emergency  /  ?page=refuel  จะถูกส่งต่อไปยังเว็บแอปให้ → ทำไอคอนแยกได้
+(function(){
+  var u=window.APP_URL||"";
+  if(!/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec/.test(u)||u.indexOf("ใส่ID")>=0){document.getElementById('f').style.display='none';document.getElementById('e').style.display='block';return;}
+  var q=location.search||"";
+  document.getElementById('f').src=u+q;
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
+})();
+</script></body></html>
